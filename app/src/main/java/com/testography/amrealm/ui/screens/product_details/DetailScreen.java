@@ -105,16 +105,7 @@ public class DetailScreen extends AbstractScreen<CatalogScreen.Component>
 
         @Override
         protected void initFab() {
-            mRootPresenter.newFabBuilder()
-                    .setIcon(R.drawable.ic_favorite_white_24dp)
-                    .setVisible(View.VISIBLE)
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Log.e("ffffff", "onClick: DetailScreenFab");
-                        }
-                    })
-                    .build();
+            // empty
         }
 
         protected void initFab(int page) {
@@ -123,24 +114,16 @@ public class DetailScreen extends AbstractScreen<CatalogScreen.Component>
                     mRootPresenter.newFabBuilder()
                             .setIcon(R.drawable.ic_favorite_white_24dp)
                             .setVisible(View.VISIBLE)
-                            .setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Log.e("ffffff", "onClick: DetailScreenFab");
-                                }
-                            })
+                            .setOnClickListener(v -> Log.e("ffffff", "onClick: DetailScreenFab"))
                             .build();
                     break;
                 case 1:
                     mRootPresenter.newFabBuilder()
                             .setIcon(R.drawable.ic_add_white_24dp)
                             .setVisible(View.VISIBLE)
-                            .setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (getView() != null) {
-                                        Flow.get(getView()).set(new AddCommentScreen(mProduct));
-                                    }
+                            .setOnClickListener(v -> {
+                                if (getView() != null) {
+                                    Flow.get(getView()).set(new AddCommentScreen(mProduct));
                                 }
                             })
                             .build();

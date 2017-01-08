@@ -15,6 +15,7 @@
         <TextView
             android:text="Rate the product"
             android:textSize="@dimen/font_normal_16"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

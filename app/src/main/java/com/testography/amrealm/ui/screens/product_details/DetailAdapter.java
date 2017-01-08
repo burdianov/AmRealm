@@ -51,6 +51,7 @@ public class DetailAdapter extends PagerAdapter {
                 (screen.getLayoutResId(), container, false);
 
         container.addView(newView);
+
         return newView;
     }
 

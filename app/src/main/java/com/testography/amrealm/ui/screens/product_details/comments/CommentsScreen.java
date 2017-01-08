@@ -15,7 +15,6 @@ import com.testography.amrealm.mvp.presenters.AbstractPresenter;
 import com.testography.amrealm.ui.screens.product_details.DetailScreen;
 
 import dagger.Provides;
-import flow.Flow;
 import io.realm.RealmList;
 import mortar.MortarScope;
 import rx.Observable;
@@ -73,10 +72,7 @@ public class CommentsScreen extends AbstractScreen<DetailScreen.Component> {
 
         @Override
         protected void initFab() {
-           /* mRootPresenter.newFabBuilder()
-                    .setVisible(View.VISIBLE)
-                    .setIcon(R.drawable.ic_add_white_24dp)
-                    .build();*/
+            // empty
         }
 
         @Override
@@ -100,12 +96,6 @@ public class CommentsScreen extends AbstractScreen<DetailScreen.Component> {
                 }
             }));
             getView().initView();
-        }
-
-        public void clickOnAddComment() {
-            if (getView() != null) {
-                Flow.get(getView()).set(new AddCommentScreen(mProduct));
-            }
         }
     }
 

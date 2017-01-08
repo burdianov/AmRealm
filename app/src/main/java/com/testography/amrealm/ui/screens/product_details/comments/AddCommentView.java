@@ -65,7 +65,7 @@ public class AddCommentView extends AbstractView<AddCommentScreen
                 RandomIdGenerator.generateRemoteId(),
                 ConstantsManager.TEMPORARY_USER_AVATAR,
                 ConstantsManager.TEMPORARY_USER_NAME,
-                mRating.getRating(), DateConverter.dateToString(new Date()),
+                (int) mRating.getRating(), DateConverter.dateToString(new Date()),
                 mCommentEt.getText().toString(), true);
         mPresenter.clickOnSaveComment(commentReq);
     }

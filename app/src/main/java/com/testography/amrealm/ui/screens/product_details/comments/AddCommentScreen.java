@@ -93,7 +93,6 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
         @Override
         protected void initFab() {
             mRootPresenter.newFabBuilder()
-                    .setIcon(R.drawable.ic_add_white_24dp)
                     .setVisible(View.GONE)
                     .setOnClickListener(null)
                     .build();

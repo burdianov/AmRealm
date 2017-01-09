@@ -38,6 +38,6 @@ public class RandomIdGenerator {
     }
 */
     public static int generateRemoteId() {
-        return (int) (new Random().nextFloat() * 100);
+        return (int) (new Random().nextFloat() * 1000);
     }
 }

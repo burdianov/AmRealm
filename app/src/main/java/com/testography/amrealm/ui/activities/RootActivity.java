@@ -292,7 +292,8 @@ public class RootActivity extends AppCompatActivity implements IRootView,
                 mToggle.setDrawerIndicatorEnabled(false); // скрываем индикатор toggle
                 mActionBar.setDisplayHomeAsUpEnabled(true); // устанавливаем индикаток тулбара
                 if (mToggle.getToolbarNavigationClickListener() == null) {
-                    mToggle.setToolbarNavigationClickListener(v -> onBackPressed());// вешаем обработчик
+                    mToggle.setToolbarNavigationClickListener(v ->
+                            onBackPressed());// вешаем обработчик
                 }
             } else {
                 mActionBar.setDisplayHomeAsUpEnabled(false); // скрываем индикатор тулбара

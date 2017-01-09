@@ -1,6 +1,8 @@
 package com.testography.amrealm.ui.screens.product_details.comments;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import com.testography.amrealm.R;
@@ -104,8 +106,21 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
         }
 
         public void clickOnSaveComment(CommentRes commentRes) {
-            //mModel.saveComment(mProduct.getId(), commentRes);
+            Context context = getView().getContext();
 
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+            alertDialog.setTitle(context.getString(R.string.add_comment))
+                    .setPositiveButton(context.getString(R.string.yes),
+                            (dialog, which) -> {
+                                mModel.saveComment(mProduct.getId(), commentRes);
+                                getView().mCommentEt.setText("");
+                                getView().mCommentEt.clearFocus();
+                                getView().mRating.setRating(0);
+                            })
+                    .setNegativeButton(R.string.no,
+                            (dialog, which) -> {
+                            })
+                    .show();
             //Flow.get(getView()).goBack();
         }
     }

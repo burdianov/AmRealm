@@ -16,7 +16,6 @@ import com.testography.amrealm.mvp.presenters.MenuItemHolder;
 import com.testography.amrealm.ui.screens.product_details.DetailScreen;
 
 import dagger.Provides;
-import flow.Flow;
 import flow.TreeKey;
 import mortar.MortarScope;
 
@@ -105,8 +104,9 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
         }
 
         public void clickOnSaveComment(CommentRes commentRes) {
-            mModel.saveComment(mProduct.getId(), commentRes);
-            Flow.get(getView()).goBack();
+            //mModel.saveComment(mProduct.getId(), commentRes);
+
+            //Flow.get(getView()).goBack();
         }
     }
 

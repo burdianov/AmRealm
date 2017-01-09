@@ -30,11 +30,9 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
 import static com.testography.amrealm.data.managers.PreferencesManager.PROFILE_AVATAR_KEY;
@@ -138,30 +136,27 @@ public class DataManager {
                 .flatMap(productRes -> Observable.empty());
     }
 
-    public Call<CommentRes> saveCommentToNetworkAndRealm(String productId,
-                                                         CommentRes commentRes) {
+    public void saveCommentToNetworkAndRealm(String productId,
+                                             CommentRes commentRes) {
+        mRestService.uploadComment(productId, commentRes)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
+                .subscribe(new Subscriber<CommentRes>() {
+                    @Override
+                    public void onCompleted() {
 
-        // TODO: 06-Jan-17 refactor as per RX with RestCallTransformer
-        Call<CommentRes> call = mRestService.uploadComment(productId, commentRes);
-
-        call.enqueue(new Callback<CommentRes>() {
-            @Override
-            public void onResponse(Call<CommentRes> call,
-                                   Response<CommentRes> response) {
-                switch (response.code()) {
-                    case 201:
-                        mRealmManager.saveNewCommentToRealm(productId, commentRes);
-                    default:
-                        // TODO: 06-Jan-17 process error
                 }
-            }
 
-            @Override
-            public void onFailure(Call<CommentRes> call, Throwable t) {
-                // TODO: 06-Jan-17 process failure
-            }
-        });
-        return mRestService.uploadComment(productId, commentRes);
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(CommentRes commentRes) {
+                        mRealmManager.saveNewCommentToRealm(productId, commentRes);
+                    }
+                });
     }
 
     private void deleteFromDb(ProductRes productRes) {

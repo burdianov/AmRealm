@@ -108,20 +108,22 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
         public void clickOnSaveComment(CommentRes commentRes) {
             Context context = getView().getContext();
 
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
-            alertDialog.setTitle(context.getString(R.string.add_comment))
-                    .setPositiveButton(context.getString(R.string.yes),
-                            (dialog, which) -> {
-                                mModel.saveComment(mProduct.getId(), commentRes);
-                                getView().mCommentEt.setText("");
-                                getView().mCommentEt.clearFocus();
-                                getView().mRating.setRating(0);
-                            })
-                    .setNegativeButton(R.string.no,
-                            (dialog, which) -> {
-                            })
-                    .show();
-            //Flow.get(getView()).goBack();
+            if (getView() != null) {
+                if (getView().mCommentEt.getText().length() == 0) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                    alertDialog.setTitle(context.getString(R.string.empty_field))
+                            .setMessage(context.getString(R.string.can_not_be_empty))
+                            .setPositiveButton(context.getString(R.string.ok),
+                                    (dialog, which) -> {
+                                    })
+                            .show();
+                } else {
+                    mModel.saveComment(mProduct.getId(), commentRes);
+                    getView().mCommentEt.setText("");
+                    getView().mCommentEt.clearFocus();
+                    getView().mRating.setRating(0);
+                }
+            }
         }
     }
 

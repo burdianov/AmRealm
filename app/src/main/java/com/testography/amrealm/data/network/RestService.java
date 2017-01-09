@@ -6,7 +6,6 @@ import com.testography.amrealm.utils.ConstantsManager;
 
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -24,6 +23,6 @@ public interface RestService {
                      lastEntityUpdate);
 
     @POST("products/{productId}/comments")
-    Call<CommentRes> uploadComment(@Path("productId") String productId,
-                                   @Body CommentRes commentRes);
+    Observable<CommentRes> uploadComment(@Path("productId") String productId,
+                                         @Body CommentRes commentRes);
 }

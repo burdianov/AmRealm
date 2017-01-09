@@ -12,9 +12,14 @@ import com.squareup.picasso.Picasso;
 import com.testography.amrealm.R;
 import com.testography.amrealm.data.storage.dto.CommentDto;
 import com.testography.amrealm.di.DaggerService;
+import com.testography.amrealm.utils.ConstantsManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -52,7 +57,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter
     public void onBindViewHolder(CommentsViewHolder holder, int position) {
         CommentDto comment = mCommentsList.get(position);
         holder.userNameTxt.setText(comment.getUserName());
-        holder.dateTxt.setText(comment.getCommentDate());
+        try {
+            holder.dateTxt.setText(elapsedTime(comment.getCommentDate()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.rating.setRating(comment.getRating());
         holder.commentTxt.setText(comment.getComment());
 
@@ -64,6 +73,38 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter
     @Override
     public int getItemCount() {
         return mCommentsList.size();
+    }
+
+    private String elapsedTime(String dateString) throws ParseException {
+        SimpleDateFormat timeFormat = new SimpleDateFormat(
+                ConstantsManager.SERVER_DATE_FORMAT, Locale.US);
+
+        Date commentDate = timeFormat.parse(dateString);
+        long commentTime = commentDate.getTime();
+
+        Date nowDate = new Date();
+        long nowTime = nowDate.getTime();
+
+        long elapsedMinutes = (nowTime - commentTime) / 1000 / 60;
+        long elapsedHours = elapsedMinutes / 60;
+        long elapsedDays = elapsedHours / 24;
+
+        String elapsedTime;
+
+        if (elapsedHours > 47) {
+            elapsedTime = String.valueOf(elapsedDays) + " days ago";
+        } else if (elapsedHours > 24) {
+            elapsedTime = String.valueOf(elapsedDays) + " day ago";
+        } else if (elapsedMinutes > 60) {
+            elapsedTime = String.valueOf(elapsedHours) + " hours ago";
+        } else if (elapsedMinutes == 60) {
+            elapsedTime = String.valueOf(elapsedHours) + " hour ago";
+        } else if (elapsedMinutes > 1 || elapsedMinutes == 0) {
+            elapsedTime = String.valueOf(elapsedMinutes) + " minutes ago";
+        } else {
+            elapsedTime = String.valueOf(elapsedMinutes) + " minute ago";
+        }
+        return elapsedTime;
     }
 
     public class CommentsViewHolder extends RecyclerView.ViewHolder {

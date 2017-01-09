@@ -1,6 +1,7 @@
 package com.testography.amrealm.data.storage.dto;
 
 import com.testography.amrealm.data.storage.realm.CommentRealm;
+import com.testography.amrealm.utils.ConstantsManager;
 
 import java.text.SimpleDateFormat;
 
@@ -12,7 +13,7 @@ public class CommentDto {
     private String comment;
 
     public CommentDto(CommentRealm commentRealm) {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yy");
+        SimpleDateFormat df = new SimpleDateFormat(ConstantsManager.SERVER_DATE_FORMAT);
         this.userName = commentRealm.getUserName();
         this.avatarUrl = commentRealm.getAvatar();
         this.rating = commentRealm.getRating();

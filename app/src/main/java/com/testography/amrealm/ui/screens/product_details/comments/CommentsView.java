@@ -46,15 +46,5 @@ public class CommentsView extends AbstractView<CommentsScreen.CommentsPresenter>
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         mCommentsList.setLayoutManager(llm);
         mCommentsList.setAdapter(mAdapter);
-        //mPresenter.initFab();
     }
-
-    //region ==================== Events ===================
-
-   /* @OnClick(R.id.fab_add_comment)
-    void addComment() {
-        mCommentsPresenter.clickOnAddComment();
-    }*/
-
-    //endregion
 }

@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.testography.amrealm.App;
+import com.testography.amrealm.R;
 import com.testography.amrealm.data.storage.dto.ActivityResultDto;
 import com.testography.amrealm.data.storage.dto.UserInfoDto;
 import com.testography.amrealm.mvp.models.AccountModel;
@@ -219,7 +220,7 @@ public class RootPresenter extends Presenter<IRootView> {
 
     public class FabBuilder {
         private int visibility = View.GONE;
-        private int icon = 0;
+        private int icon = R.drawable.ic_favorite_white_24dp;
         private View.OnClickListener onClickListener = null;
 
         public FabBuilder setVisible(int visibility) {

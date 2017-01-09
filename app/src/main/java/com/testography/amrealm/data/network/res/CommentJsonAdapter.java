@@ -2,7 +2,6 @@ package com.testography.amrealm.data.network.res;
 
 import com.squareup.moshi.FromJson;
 import com.squareup.moshi.ToJson;
-import com.testography.amrealm.data.network.req.CommentReq;
 import com.testography.amrealm.utils.DateConverter;
 
 import java.text.ParseException;
@@ -14,6 +13,7 @@ public class CommentJsonAdapter {
         try {
             return new CommentRes(
                     commentJson.id,
+                    commentJson.remoteId,
                     commentJson.avatar,
                     commentJson.userName,
                     commentJson.rating,
@@ -26,6 +26,7 @@ public class CommentJsonAdapter {
         }
         return new CommentRes(
                 commentJson.id,
+                commentJson.remoteId,
                 commentJson.avatar,
                 commentJson.userName,
                 commentJson.rating,
@@ -36,23 +37,10 @@ public class CommentJsonAdapter {
     }
 
     @ToJson
-    CommentJson toJson(CommentReq commentReq) {
-        CommentJson commentJson = new CommentJson();
-        commentJson.id = commentReq.id;
-        commentJson.remoteId = commentReq.remoteId;
-        commentJson.avatar = commentReq.avatar;
-        commentJson.userName = commentReq.userName;
-        commentJson.rating = commentReq.rating;
-        commentJson.commentDate = commentReq.commentDate;
-        commentJson.comment = commentReq.comment;
-        commentJson.active = commentReq.active;
-        return commentJson;
-    }
-
-    @ToJson
     CommentJson toJson(CommentRes commentRes) {
         CommentJson commentJson = new CommentJson();
         commentJson.id = commentRes.getId();
+        commentJson.remoteId = commentRes.getRemoteId();
         commentJson.avatar = commentRes.getAvatar();
         commentJson.userName = commentRes.getUserName();
         commentJson.rating = commentRes.getRating();

@@ -1,10 +1,7 @@
 package com.testography.amrealm.data.storage.realm;
 
-import com.testography.amrealm.data.network.req.CommentReq;
 import com.testography.amrealm.data.network.res.CommentRes;
-import com.testography.amrealm.utils.DateConverter;
 
-import java.text.ParseException;
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -30,19 +27,6 @@ public class CommentRealm extends RealmObject {
         this.rating = commentRes.getRating();
         this.commentDate = commentRes.getCommentDate();
         this.comment = commentRes.getComment();
-    }
-
-    public CommentRealm(CommentReq commentReq) {
-        try {
-            this.id = commentReq.id;
-            this.userName = commentReq.userName;
-            this.avatar = commentReq.avatar;
-            this.rating = commentReq.rating;
-            this.commentDate = DateConverter.stringToDate(commentReq.commentDate);
-            this.comment = commentReq.comment;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getId() {

@@ -7,11 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.testography.amrealm.R;
-import com.testography.amrealm.data.network.req.CommentReq;
+import com.testography.amrealm.data.network.res.CommentRes;
 import com.testography.amrealm.di.DaggerService;
 import com.testography.amrealm.mvp.views.AbstractView;
 import com.testography.amrealm.utils.ConstantsManager;
-import com.testography.amrealm.utils.DateConverter;
 import com.testography.amrealm.utils.RandomIdGenerator;
 
 import java.util.Date;
@@ -60,14 +59,14 @@ public class AddCommentView extends AbstractView<AddCommentScreen
 
     @OnClick(R.id.save_comment_btn)
     void saveComment() {
-        CommentReq commentReq = new CommentReq(
+        CommentRes commentRes = new CommentRes(
                 RandomIdGenerator.generateId(),
                 RandomIdGenerator.generateRemoteId(),
                 ConstantsManager.TEMPORARY_USER_AVATAR,
                 ConstantsManager.TEMPORARY_USER_NAME,
-                (int) mRating.getRating(), DateConverter.dateToString(new Date()),
+                (int) mRating.getRating(), new Date(),
                 mCommentEt.getText().toString(), true);
-        mPresenter.clickOnSaveComment(commentReq);
+        mPresenter.clickOnSaveComment(commentRes);
     }
 
     //endregion

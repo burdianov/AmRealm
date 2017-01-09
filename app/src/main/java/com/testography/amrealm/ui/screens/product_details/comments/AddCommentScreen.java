@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.testography.amrealm.R;
-import com.testography.amrealm.data.network.req.CommentReq;
+import com.testography.amrealm.data.network.res.CommentRes;
 import com.testography.amrealm.data.storage.realm.ProductRealm;
 import com.testography.amrealm.di.DaggerService;
 import com.testography.amrealm.di.scopes.DaggerScope;
@@ -104,8 +104,8 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
                     .SERVICE_NAME)).inject(this);
         }
 
-        public void clickOnSaveComment(CommentReq commentReq) {
-            mModel.saveComment(mProduct.getId(), commentReq);
+        public void clickOnSaveComment(CommentRes commentRes) {
+            mModel.saveComment(mProduct.getId(), commentRes);
             Flow.get(getView()).goBack();
         }
     }

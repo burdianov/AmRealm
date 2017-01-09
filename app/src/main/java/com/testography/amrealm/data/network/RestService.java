@@ -1,6 +1,5 @@
 package com.testography.amrealm.data.network;
 
-import com.testography.amrealm.data.network.req.CommentReq;
 import com.testography.amrealm.data.network.res.CommentRes;
 import com.testography.amrealm.data.network.res.ProductRes;
 import com.testography.amrealm.utils.ConstantsManager;
@@ -26,5 +25,5 @@ public interface RestService {
 
     @POST("products/{productId}/comments")
     Call<CommentRes> uploadComment(@Path("productId") String productId,
-                                   @Body CommentReq commentReq);
+                                   @Body CommentRes commentRes);
 }

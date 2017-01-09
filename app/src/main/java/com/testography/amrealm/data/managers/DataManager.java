@@ -8,7 +8,6 @@ import com.testography.amrealm.App;
 import com.testography.amrealm.R;
 import com.testography.amrealm.data.network.RestCallTransformer;
 import com.testography.amrealm.data.network.RestService;
-import com.testography.amrealm.data.network.req.CommentReq;
 import com.testography.amrealm.data.network.res.CommentRes;
 import com.testography.amrealm.data.network.res.ProductRes;
 import com.testography.amrealm.data.storage.dto.CommentDto;
@@ -140,10 +139,10 @@ public class DataManager {
     }
 
     public Call<CommentRes> saveCommentToNetworkAndRealm(String productId,
-                                                         CommentReq commentReq) {
+                                                         CommentRes commentRes) {
 
         // TODO: 06-Jan-17 refactor as per RX with RestCallTransformer
-        Call<CommentRes> call = mRestService.uploadComment(productId, commentReq);
+        Call<CommentRes> call = mRestService.uploadComment(productId, commentRes);
 
         call.enqueue(new Callback<CommentRes>() {
             @Override
@@ -151,7 +150,7 @@ public class DataManager {
                                    Response<CommentRes> response) {
                 switch (response.code()) {
                     case 201:
-                        mRealmManager.saveNewCommentToRealm(productId, commentReq);
+                        mRealmManager.saveNewCommentToRealm(productId, commentRes);
                     default:
                         // TODO: 06-Jan-17 process error
                 }
@@ -162,7 +161,7 @@ public class DataManager {
                 // TODO: 06-Jan-17 process failure
             }
         });
-        return mRestService.uploadComment(productId, commentReq);
+        return mRestService.uploadComment(productId, commentRes);
     }
 
     private void deleteFromDb(ProductRes productRes) {

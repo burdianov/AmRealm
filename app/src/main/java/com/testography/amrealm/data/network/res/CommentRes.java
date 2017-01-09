@@ -7,6 +7,7 @@ import java.util.Date;
 public class CommentRes {
     @Json(name = "_id")
     private String id;
+    private int remoteId;
     private String avatar;
     private String userName;
     @Json(name = "raiting")
@@ -15,10 +16,11 @@ public class CommentRes {
     private String comment;
     private boolean active;
 
-    public CommentRes(String id, String avatar, String userName,
+    public CommentRes(String id, int remoteId, String avatar, String userName,
                       float rating, Date commentDate, String comment,
                       boolean active) {
         this.id = id;
+        this.remoteId = remoteId;
         this.avatar = avatar;
         this.userName = userName;
         this.rating = rating;
@@ -29,6 +31,10 @@ public class CommentRes {
 
     public String getId() {
         return id;
+    }
+
+    public int getRemoteId() {
+        return remoteId;
     }
 
     public String getAvatar() {

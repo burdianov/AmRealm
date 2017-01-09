@@ -1,6 +1,5 @@
 package com.testography.amrealm.data.managers;
 
-import com.testography.amrealm.data.network.req.CommentReq;
 import com.testography.amrealm.data.network.res.CommentRes;
 import com.testography.amrealm.data.network.res.ProductRes;
 import com.testography.amrealm.data.storage.realm.CommentRealm;
@@ -14,14 +13,14 @@ import rx.Observable;
 public class RealmManager {
     private Realm mRealmInstance;
 
-    public void saveNewCommentToRealm(String productId, CommentReq
-            commentReq) {
+    public void saveNewCommentToRealm(String productId, CommentRes
+            commentRes) {
         Realm realm = Realm.getDefaultInstance();
         ProductRealm product = realm.where(ProductRealm.class)
                 .equalTo("id", productId)
                 .findAll()
                 .get(0);
-        CommentRealm commentRealm = new CommentRealm(commentReq);
+        CommentRealm commentRealm = new CommentRealm(commentRes);
         realm.executeTransaction(realm1 -> product.addComment(commentRealm));
         realm.close();
     }

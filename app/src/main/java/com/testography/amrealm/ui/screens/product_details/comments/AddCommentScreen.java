@@ -14,7 +14,6 @@ import com.testography.amrealm.flow.AbstractScreen;
 import com.testography.amrealm.flow.Screen;
 import com.testography.amrealm.mvp.models.DetailModel;
 import com.testography.amrealm.mvp.presenters.AbstractPresenter;
-import com.testography.amrealm.mvp.presenters.MenuItemHolder;
 import com.testography.amrealm.ui.screens.product_details.DetailScreen;
 
 import dagger.Provides;
@@ -80,13 +79,14 @@ public class AddCommentScreen extends AbstractScreen<DetailScreen.Component>
 
         @Override
         protected void initActionBar() {
+            // TODO: 09-Jan-17 implement comment addition via actionbar later on
             mRootPresenter.newActionBarBuilder()
                     .setTitle("Rate the Product")
-                    .addAction(new MenuItemHolder("Save comment", R.drawable
+                    /*.addAction(new MenuItemHolder("Save comment", R.drawable
                             .ic_done_orange_24dp, item -> {
                         getRootView().showMessage("Save Comment");
                         return true;
-                    }))
+                    }))*/
                     .setBackArrow(true)
                     .build();
         }

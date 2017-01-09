@@ -15,7 +15,7 @@ import butterknife.BindView;
 
 public class CommentsView extends AbstractView<CommentsScreen.CommentsPresenter> {
 
-    private CommentsAdapter mAdapter = new CommentsAdapter(getContext());
+    private CommentsAdapter mAdapter = new CommentsAdapter();
 
     @Inject
     CommentsScreen.CommentsPresenter mCommentsPresenter;

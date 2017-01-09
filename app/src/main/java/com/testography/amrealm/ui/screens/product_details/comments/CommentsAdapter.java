@@ -1,8 +1,8 @@
 package com.testography.amrealm.ui.screens.product_details.comments;
 
-import android.content.Context;
 import android.support.v7.widget.AppCompatRatingBar;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +34,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter
 
     @Inject
     Picasso mPicasso;
-
-    private Context mContext;
-
-    public CommentsAdapter(Context context) {
-        mContext = context;
-    }
 
     public void addItem(CommentDto commentDto) {
         mCommentsList.add(commentDto);
@@ -85,39 +79,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter
     private String elapsedTime(String dateString) throws ParseException {
         SimpleDateFormat timeFormat = new SimpleDateFormat(
                 ConstantsManager.SERVER_DATE_FORMAT, Locale.US);
-
         Date commentDate = timeFormat.parse(dateString);
         long commentTime = commentDate.getTime();
 
-        Date nowDate = new Date();
-        long nowTime = nowDate.getTime();
-
-        long elapsedMinutes = (nowTime - commentTime) / 1000 / 60;
-        long elapsedHours = elapsedMinutes / 60;
-        long elapsedDays = elapsedHours / 24;
-
-        String elapsedTime;
-
-        if (elapsedHours > 47) {
-            elapsedTime = String.valueOf(elapsedDays) + getStr(R.string.days_ago);
-        } else if (elapsedHours > 24) {
-            elapsedTime = String.valueOf(elapsedDays) + getStr(R.string.day_ago);
-        } else if (elapsedMinutes > 60) {
-            elapsedTime = String.valueOf(elapsedHours) + getStr(R.string.hours_ago);
-        } else if (elapsedMinutes == 60) {
-            elapsedTime = String.valueOf(elapsedHours) + getStr(R.string.hour_ago);
-        } else if (elapsedMinutes > 1 || elapsedMinutes == 0) {
-            elapsedTime = String.valueOf(elapsedMinutes) + getStr(R.string
-                    .minutes_ago);
-        } else {
-            elapsedTime = String.valueOf(elapsedMinutes) + getStr(R.string
-                    .minute_ago);
-        }
-        return elapsedTime;
-    }
-
-    private String getStr(int resource) {
-        return " " + mContext.getString(resource);
+        return DateUtils.getRelativeTimeSpanString(commentTime).toString();
     }
 
     public class CommentsViewHolder extends RecyclerView.ViewHolder {

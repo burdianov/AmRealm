@@ -125,8 +125,11 @@
     <string name="blank">Blank</string>
     <string name="john_doe">John Doe</string>
     <string name="days_ago">days ago</string>
+    <string name="day_ago">day ago</string>
     <string name="hours_ago">hours ago</string>
+    <string name="hour_ago">hour ago</string>
     <string name="minutes_ago">minutes ago</string>
+    <string name="minute_ago">minute ago</string>
     <string name="add_account_address">Add Account Address</string>
     <string name="about">About</string>
     <string name="add_comment">Add comment</string>

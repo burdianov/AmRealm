@@ -92,17 +92,17 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter
         String elapsedTime;
 
         if (elapsedHours > 47) {
-            elapsedTime = String.valueOf(elapsedDays) + " days ago";
+            elapsedTime = String.valueOf(elapsedDays) + " " + R.string.days_ago;
         } else if (elapsedHours > 24) {
-            elapsedTime = String.valueOf(elapsedDays) + " day ago";
+            elapsedTime = String.valueOf(elapsedDays) + " " + R.string.day_ago;
         } else if (elapsedMinutes > 60) {
-            elapsedTime = String.valueOf(elapsedHours) + " hours ago";
+            elapsedTime = String.valueOf(elapsedHours) + R.string.hours_ago;
         } else if (elapsedMinutes == 60) {
-            elapsedTime = String.valueOf(elapsedHours) + " hour ago";
+            elapsedTime = String.valueOf(elapsedHours) + " " + R.string.hour_ago;
         } else if (elapsedMinutes > 1 || elapsedMinutes == 0) {
-            elapsedTime = String.valueOf(elapsedMinutes) + " minutes ago";
+            elapsedTime = String.valueOf(elapsedMinutes) + " " + R.string.minutes_ago;
         } else {
-            elapsedTime = String.valueOf(elapsedMinutes) + " minute ago";
+            elapsedTime = String.valueOf(elapsedMinutes) + " " + R.string.minute_ago;
         }
         return elapsedTime;
     }

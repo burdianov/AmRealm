@@ -161,6 +161,11 @@ public class SplashActivity extends AppCompatActivity implements IRootView {
         return null;
     }
 
+    @Override
+    public void changeCart(int resId) {
+        // empty
+    }
+
     // TODO: 25-Nov-16 Resolve the commented methods
 //    @Override
 //    public void animateSocialButtons() {

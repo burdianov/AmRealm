@@ -98,14 +98,24 @@ public class CatalogScreen extends AbstractScreen<RootActivity.RootComponent> {
 
         @Override
         protected void initActionBar() {
+            // custom view MenuItem
             mRootPresenter.newActionBarBuilder()
+                    .setTitle("Catalog")
+                    .addAction(new MenuItemHolder("To Cart", R.menu.menu_cart_counter_badge,
+                            v -> {
+                                getRootView().changeCart(R.menu.menu_cart_counter_badge);
+                            }))
+                    .build();
+
+            // icon MenuItem
+            /*mRootPresenter.newActionBarBuilder()
                     .setTitle("Catalog")
                     .addAction(new MenuItemHolder("To Cart", R.drawable
                             .ic_shopping_basket_black_24dp, item -> {
                         getRootView().showMessage("Go to Cart");
                         return true;
                     }))
-                    .build();
+                    .build();*/
         }
 
         @Override

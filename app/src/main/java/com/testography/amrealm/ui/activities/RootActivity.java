@@ -15,6 +15,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -81,6 +82,11 @@ public class RootActivity extends AppCompatActivity implements IRootView,
     FloatingActionButton mFab;
 
     protected ProgressDialog mProgressDialog;
+
+    private TextView mCartItemCountTV;
+    private int mCartItemCount;
+    private MenuItem mMenuItem;
+    private Menu mMenu;
 
     @Inject
     RootPresenter mRootPresenter;
@@ -318,17 +324,25 @@ public class RootActivity extends AppCompatActivity implements IRootView,
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        mMenu = menu;
         if (mActionBarMenuItems != null && !mActionBarMenuItems.isEmpty()) {
             for (MenuItemHolder menuItem : mActionBarMenuItems) {
-                MenuItem item = menu.add(menuItem.getTitle());
-                item.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
-                        .setIcon(menuItem.getIconResId())
-                        .setOnMenuItemClickListener(menuItem.getListener());
+                if (!menuItem.hasCustomView()) {
+                    mMenuItem = mMenu.add(menuItem.getTitle());
+                    mMenuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                            .setIcon(menuItem.getMenuResId())
+                            .setOnMenuItemClickListener(menuItem.getMenuItemListener());
+                } else {
+                    getMenuInflater().inflate(menuItem.getMenuResId(), mMenu);
+                    mMenuItem = mMenu.findItem(R.id.cart_counter_badge_menu);
+                    mMenuItem.getActionView()
+                            .setOnClickListener(menuItem.getViewListener());
+                }
             }
         } else {
             menu.clear();
         }
-        return super.onPrepareOptionsMenu(menu);
+        return super.onPrepareOptionsMenu(mMenu);
     }
 
     @Override
@@ -356,6 +370,24 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         return mFab;
     }
 
+    @Override
+    public void changeCart(int resId) {
+        mMenuItem = mMenu.findItem(R.id.cart_counter_badge_menu);
+
+        FrameLayout rootView = (FrameLayout) mMenuItem.getActionView();
+        FrameLayout circle = (FrameLayout) rootView.findViewById(R.id
+                .view_alert_red_circle);
+
+        mCartItemCount = 7;
+
+        mCartItemCountTV = (TextView) rootView.findViewById(R.id
+                .view_alert_count_textview);
+        mCartItemCountTV.setText(String.valueOf(mCartItemCount));
+
+        circle.setBackground(ResourcesCompat.getDrawable(getResources(),
+                R.drawable.circle_color_red, null));
+    }
+
     //endregion
 
     //region ==================== FabView ===================
@@ -377,11 +409,15 @@ public class RootActivity extends AppCompatActivity implements IRootView,
     @RootScope
     public interface RootComponent {
         void inject(RootActivity activity);
+
         void inject(SplashActivity activity);
+
         void inject(RootPresenter presenter);
 
         AccountModel getAccountModel();
+
         RootPresenter getRootPresenter();
+
         Picasso getPicasso();
     }
 

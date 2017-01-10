@@ -18,4 +18,6 @@ public interface IRootView extends IView {
     void initDrawer(UserInfoDto userInfoDto);
 
     FloatingActionButton getFab();
+
+    void changeCart(int resId);
 }

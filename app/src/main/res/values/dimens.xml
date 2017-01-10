@@ -93,5 +93,6 @@
     <dimen name="fab_right_space">24dp</dimen>
     <dimen name="fab_bottom_space">16dp</dimen>
     <dimen name="product_info_card_height">145dp</dimen>
+    <dimen name="size_badge_text">12sp</dimen>
 
 </resources>

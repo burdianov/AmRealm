@@ -14,7 +14,6 @@ import com.testography.amrealm.data.storage.dto.CommentDto;
 import com.testography.amrealm.data.storage.dto.ProductDto;
 import com.testography.amrealm.data.storage.dto.ProductLocalInfo;
 import com.testography.amrealm.data.storage.dto.UserAddressDto;
-import com.testography.amrealm.data.storage.dto.UserDto;
 import com.testography.amrealm.data.storage.realm.ProductRealm;
 import com.testography.amrealm.di.DaggerService;
 import com.testography.amrealm.di.components.DaggerDataManagerComponent;
@@ -54,8 +53,6 @@ public class DataManager {
     RealmManager mRealmManager;
     @Inject
     Context mAppContext;
-
-    private UserDto mUser;
 
     private Map<String, String> mUserProfileInfo;
     private List<UserAddressDto> mUserAddresses;
@@ -112,8 +109,9 @@ public class DataManager {
             mUserAddresses = userAddresses;
         }
         mUserSettings = getPreferencesManager().getUserSettings();
-        mUser = new UserDto(mUserProfileInfo, mUserAddresses, mUserSettings);
     }
+
+    public List<String> deletedPoducts = new ArrayList<>();
 
     @RxLogObservable
     public Observable<ProductRealm> getProductsObsFromNetwork() {
@@ -127,6 +125,7 @@ public class DataManager {
                     if (!productRes.isActive()) {
                         mRealmManager.deleteFromRealm(ProductRealm.class,
                                 productRes.getId()); // удалить из базы данных если не активен
+                        deletedPoducts.add(productRes.getId());
                     }
                 })
                 .distinct(ProductRes::getRemoteId)

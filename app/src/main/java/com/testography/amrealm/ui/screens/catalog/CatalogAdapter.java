@@ -46,13 +46,34 @@ public class CatalogAdapter extends PagerAdapter {
         mCISynchronizer.synchronize();
     }
 
+    private List<Integer> invalidProductsPositions = new ArrayList<>();
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ProductRealm product = mProductList.get(position);
-        Context productContext = CatalogScreen.Factory.createProductContext
-                (product, container.getContext());
-        View newView = LayoutInflater.from(productContext).inflate(R.layout
-                .screen_product, container, false);
+        int i = 0;
+        for (ProductRealm productRealm : mProductList) {
+            if (!productRealm.isValid()) {
+                if (!invalidProductsPositions.contains(i)) {
+                    invalidProductsPositions.add(i);
+                }
+            }
+            ++i;
+        }
+
+        View newView;
+
+        if (invalidProductsPositions.contains(position)) {
+            newView = LayoutInflater.from(container.getContext()).inflate(R.layout
+                    .screen_product_deleted, container, false);
+            mProductList.remove(position);
+            notifyDataSetChanged();
+        } else {
+            ProductRealm product = mProductList.get(position);
+            Context productContext = CatalogScreen.Factory.createProductContext
+                    (product, container.getContext());
+            newView = LayoutInflater.from(productContext).inflate(R.layout
+                    .screen_product, container, false);
+        }
         container.addView(newView);
         return newView;
     }

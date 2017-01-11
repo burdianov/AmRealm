@@ -15,7 +15,7 @@ import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 
 public class CatalogView extends AbstractView<CatalogScreen.CatalogPresenter>
-        implements ICatalogView, CatalogAdapter.CISynchronizer {
+        implements ICatalogView {
 
     @BindView(R.id.add_to_card_btn)
     Button mAddToCartBtn;
@@ -33,13 +33,14 @@ public class CatalogView extends AbstractView<CatalogScreen.CatalogPresenter>
     protected void initDagger(Context context) {
         DaggerService.<CatalogScreen.Component>getDaggerComponent(context).inject
                 (this);
-        mAdapter = new CatalogAdapter(this);
+        mAdapter = new CatalogAdapter();
     }
 
     @Override
     public void showCatalogView() {
         mProductPager.setAdapter(mAdapter);
         mIndicator.setViewPager(mProductPager);
+        mAdapter.registerDataSetObserver(mIndicator.getDataSetObserver());
     }
 
     @Override
@@ -58,11 +59,6 @@ public class CatalogView extends AbstractView<CatalogScreen.CatalogPresenter>
 
     public CatalogAdapter getAdapter() {
         return mAdapter;
-    }
-
-    @Override
-    public void synchronize() {
-        mIndicator.getDataSetObserver().onChanged();
     }
 
     //region ==================== Events ===================

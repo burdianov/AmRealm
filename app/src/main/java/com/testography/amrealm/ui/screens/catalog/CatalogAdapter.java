@@ -20,16 +20,6 @@ public class CatalogAdapter extends PagerAdapter {
 
     private List<ProductRealm> mProductList = new ArrayList<>();
 
-    private CISynchronizer mCISynchronizer;
-
-    public interface CISynchronizer {
-        void synchronize();
-    }
-
-    public CatalogAdapter(CatalogView catalogView) {
-        mCISynchronizer = catalogView;
-    }
-
     @Override
     public int getCount() {
         return mProductList.size();
@@ -43,7 +33,6 @@ public class CatalogAdapter extends PagerAdapter {
     public void addItem(ProductRealm product) {
         mProductList.add(product);
         notifyDataSetChanged();
-        mCISynchronizer.synchronize();
     }
 
     private List<Integer> invalidProductsPositions = new ArrayList<>();

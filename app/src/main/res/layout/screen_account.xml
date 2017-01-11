@@ -79,12 +79,20 @@
                         android:contentDescription="@string/dummy_content_description"
                         android:src="@drawable/ic_account_circle_black_24dp"/>
 
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/spacing_small_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <TextView
+                            android:text="@string/user_full_name_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
                         <EditText
                             android:id="@+id/user_full_name_et"
+                            android:paddingLeft="@dimen/spacing_zero"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/grey"
@@ -93,8 +101,7 @@
                             android:text="@string/user_full_name"
                             android:textColor="@color/account_title_color"
                             android:textSize="@dimen/font_normal_16"/>
-                    </android.support.design.widget.TextInputLayout>
-
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,21 +115,28 @@
                         android:contentDescription="@string/dummy_content_description"
                         android:src="@drawable/ic_call_black_24dp"/>
 
-                    <android.support.design.widget.TextInputLayout
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/spacing_small_8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <TextView
+                            android:text="@string/phone_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
                         <EditText
                             android:id="@+id/user_phone_et"
+                            android:paddingLeft="@dimen/spacing_zero"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/grey"
                             android:enabled="false"
-                            android:hint="@string/phone_label"
                             android:inputType="phone"
                             android:text="@string/phone"/>
-                    </android.support.design.widget.TextInputLayout>
 
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View style="@style/HorizontalDivider"/>

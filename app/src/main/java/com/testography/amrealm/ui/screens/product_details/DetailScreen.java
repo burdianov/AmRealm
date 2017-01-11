@@ -2,7 +2,6 @@ package com.testography.amrealm.ui.screens.product_details;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -114,7 +113,8 @@ public class DetailScreen extends AbstractScreen<CatalogScreen.Component>
                     mRootPresenter.newFabBuilder()
                             .setIcon(R.drawable.ic_favorite_white_24dp)
                             .setVisible(View.VISIBLE)
-                            .setOnClickListener(v -> Log.e("ffffff", "onClick: DetailScreenFab"))
+                            .setOnClickListener(v -> getRootView().showMessage
+                                    ("Favorite button clicked"))
                             .build();
                     break;
                 case 1:

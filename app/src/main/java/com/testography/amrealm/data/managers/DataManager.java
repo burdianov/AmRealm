@@ -144,13 +144,11 @@ public class DataManager {
                     @Override
                     public void onCompleted() {
 
-                }
-
+                    }
                     @Override
                     public void onError(Throwable e) {
 
                     }
-
                     @Override
                     public void onNext(CommentRes commentRes) {
                         mRealmManager.saveNewCommentToRealm(productId, commentRes);

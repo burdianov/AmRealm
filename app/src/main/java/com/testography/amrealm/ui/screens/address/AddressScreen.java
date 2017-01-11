@@ -10,6 +10,7 @@ import com.testography.amrealm.di.scopes.AddressScope;
 import com.testography.amrealm.flow.AbstractScreen;
 import com.testography.amrealm.flow.Screen;
 import com.testography.amrealm.mvp.models.AccountModel;
+import com.testography.amrealm.mvp.presenters.AbstractPresenter;
 import com.testography.amrealm.mvp.presenters.IAddressPresenter;
 import com.testography.amrealm.ui.screens.account.AccountScreen;
 
@@ -19,7 +20,6 @@ import dagger.Provides;
 import flow.Flow;
 import flow.TreeKey;
 import mortar.MortarScope;
-import mortar.ViewPresenter;
 
 @Screen(R.layout.screen_add_address)
 public class AddressScreen extends AbstractScreen<AccountScreen.Component>
@@ -90,11 +90,29 @@ public class AddressScreen extends AbstractScreen<AccountScreen.Component>
 
     //region ==================== Presenter ===================
 
-    public class AddressPresenter extends ViewPresenter<AddressView> implements
-            IAddressPresenter {
+    public class AddressPresenter extends AbstractPresenter<AddressView, AccountModel>
+            implements IAddressPresenter {
 
         @Inject
         AccountModel mAccountModel;
+
+        @Override
+        protected void initActionBar() {
+            mRootPresenter.newActionBarBuilder()
+                    .setTitle("Add/Edit Address")
+                    .setBackArrow(true)
+                    .build();
+        }
+
+        @Override
+        protected void initFab() {
+            // empty
+        }
+
+        @Override
+        protected void initDagger(MortarScope scope) {
+            // empty
+        }
 
         @Override
         protected void onEnterScope(MortarScope scope) {

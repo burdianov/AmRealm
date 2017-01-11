@@ -6,11 +6,11 @@ import android.util.AttributeSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import com.testography.amrealm.R;
 import com.testography.amrealm.data.storage.dto.UserAddressDto;
 import com.testography.amrealm.di.DaggerService;
+import com.testography.amrealm.mvp.views.AbstractView;
 import com.testography.amrealm.mvp.views.IAddressView;
 
 import javax.inject.Inject;
@@ -19,7 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddressView extends RelativeLayout implements IAddressView {
+public class AddressView extends AbstractView<AddressScreen.AddressPresenter>
+        implements IAddressView {
 
     @BindView(R.id.address_name_et)
     EditText mAddressNameEt;
@@ -47,6 +48,11 @@ public class AddressView extends RelativeLayout implements IAddressView {
             DaggerService.<AddressScreen.Component>getDaggerComponent(context)
                     .inject(this);
         }
+    }
+
+    @Override
+    protected void initDagger(Context context) {
+        // empty
     }
 
     //region ==================== flow view lifecycle callbacks ===================

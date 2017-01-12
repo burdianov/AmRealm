@@ -5,7 +5,7 @@
     style="@style/CustomCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_small_8"
+    android:layout_marginTop="@dimen/spacing_small_8"
     android:layout_marginLeft="@dimen/spacing_small_8"
     android:layout_marginRight="@dimen/spacing_small_8">
 

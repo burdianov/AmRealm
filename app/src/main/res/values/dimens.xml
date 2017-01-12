@@ -81,7 +81,7 @@
     <dimen name="account_avatar_width">140dp</dimen>
     <dimen name="pointer_size">24dp</dimen>
     <dimen name="account_toolbar_height">184dp</dimen>
-    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_height">48dp</dimen>`
 
     <dimen name="image_width">120dp</dimen>
     <dimen name="avatar_big_final_width">0dp</dimen>

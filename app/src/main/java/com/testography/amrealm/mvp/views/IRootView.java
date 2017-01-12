@@ -8,16 +8,13 @@ import com.testography.amrealm.data.storage.dto.UserInfoDto;
 public interface IRootView extends IView {
     void showMessage(String message);
     void showError(Throwable e);
-
     void showLoad();
     void hideLoad();
 
+    void initDrawer(UserInfoDto userInfoDto);
+    void changeCart(int resId);
+
     @Nullable
     IView getCurrentScreen();
-
-    void initDrawer(UserInfoDto userInfoDto);
-
     FloatingActionButton getFab();
-
-    void changeCart(int resId);
 }

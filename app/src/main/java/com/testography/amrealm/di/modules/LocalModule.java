@@ -12,7 +12,6 @@ import dagger.Provides;
 
 @Module
 public class LocalModule {
-
     @Provides
     @Singleton
     PreferencesManager providePreferencesManager(Context context) {

@@ -11,7 +11,6 @@ import dagger.Provides;
 
 @Module
 public class PicassoCacheModule {
-
     @Provides
     @RootScope
     Picasso providePicasso(Context context) {

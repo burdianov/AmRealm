@@ -18,7 +18,7 @@ import static com.testography.amrealm.data.managers.PreferencesManager.PROFILE_P
 
 public class AccountModel extends AbstractModel {
 
-    // private PublishSubject<UserInfoDto> mUserInfoObs = PublishSubject.create();
+//     private PublishSubject<UserInfoDto> mUserInfoObs = PublishSubject.create();
     private BehaviorSubject<UserInfoDto> mUserInfoObs = BehaviorSubject.create();
 
     public AccountModel() {
@@ -35,7 +35,7 @@ public class AccountModel extends AbstractModel {
                 map.get(PROFILE_AVATAR_KEY));
     }
 
-    public void saveProfileInfo(UserInfoDto userInfo) {
+    public void saveUserProfileInfo(UserInfoDto userInfo) {
         mDataManager.saveUserProfileInfo(userInfo.getName(), userInfo.getPhone(),
                 userInfo.getAvatar());
         mUserInfoObs.onNext(userInfo);

@@ -248,20 +248,15 @@ public class AccountScreen extends AbstractScreen<RootActivity.RootComponent> {
         //endregion
 
         @Override
-        public void clickOnAddress() {
-            if (getView() != null) {
-                Flow.get(getView()).set(new AddressScreen(null));
-            }
-        }
-
-        @Override
         public void switchViewState() {
             if (getCustomState() == AccountView.EDIT_STATE && getView() != null)
-                mAccountModel.saveProfileInfo(getView().getUserProfileInfo());
+                mAccountModel.saveUserProfileInfo(getView().getUserProfileInfo());
             if (getView() != null) {
                 getView().changeState();
             }
         }
+
+        //region ==================== CAMERA ===================
 
         @Override
         public void takePhoto() {
@@ -269,8 +264,6 @@ public class AccountScreen extends AbstractScreen<RootActivity.RootComponent> {
                 getView().showPhotoSourceDialog();
             }
         }
-
-        //region ==================== CAMERA ===================
 
         @Override
         public void chooseCamera() {
@@ -350,6 +343,15 @@ public class AccountScreen extends AbstractScreen<RootActivity.RootComponent> {
 
         //endregion
 
+        //region ==================== Address ===================
+
+        @Override
+        public void clickOnAddress() {
+            if (getView() != null) {
+                Flow.get(getView()).set(new AddressScreen(null));
+            }
+        }
+
         @Override
         public void removeAddress(int position) {
             mAccountModel.removeAddress(mAccountModel.getAddressFromPosition(position));
@@ -363,6 +365,8 @@ public class AccountScreen extends AbstractScreen<RootActivity.RootComponent> {
                         .getAddressFromPosition(position)));
             }
         }
+
+        //endregion
 
         @Nullable
         @Override

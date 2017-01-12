@@ -26,7 +26,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -415,6 +417,18 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         AccountModel getAccountModel();
         RootPresenter getRootPresenter();
         Picasso getPicasso();
+    }
+
+    //endregion
+
+    //region ==================== Hide soft keyboard on tap ===================
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 
     //endregion

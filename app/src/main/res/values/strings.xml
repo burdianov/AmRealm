@@ -136,5 +136,5 @@
     <string name="add_comment">Add comment</string>
     <string name="save_comment">Save comment</string>
     <string name="empty_field">Empty field</string>
-    <string name="can_not_be_empty">The add comment field can not be empty</string>
+    <string name="can_not_be_empty">The comment field can not be empty</string>
 </resources>

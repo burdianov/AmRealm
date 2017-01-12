@@ -25,6 +25,28 @@ public class AccountModel extends AbstractModel {
         mUserInfoObs.onNext(getUserProfileInfo());
     }
 
+    //region ==================== User ===================
+
+    private UserInfoDto getUserProfileInfo() {
+        Map<String, String> map = mDataManager.getUserProfileInfo();
+        return new UserInfoDto(
+                map.get(PROFILE_FULL_NAME_KEY),
+                map.get(PROFILE_PHONE_KEY),
+                map.get(PROFILE_AVATAR_KEY));
+    }
+
+    public void saveProfileInfo(UserInfoDto userInfo) {
+        mDataManager.saveUserProfileInfo(userInfo.getName(), userInfo.getPhone(),
+                userInfo.getAvatar());
+        mUserInfoObs.onNext(userInfo);
+    }
+
+    public Observable<UserInfoDto> getUserInfoObs() {
+        return mUserInfoObs;
+    }
+
+    //endregion
+
     //region ==================== Addresses ===================
 
     public Observable<UserAddressDto> getAddressObs() {
@@ -64,28 +86,6 @@ public class AccountModel extends AbstractModel {
     public void saveSettings(UserSettingsDto settings) {
         mDataManager.saveSetting(NOTIFICATION_ORDER_KEY, settings.isOrderNotification());
         mDataManager.saveSetting(NOTIFICATION_PROMO_KEY, settings.isPromoNotification());
-    }
-
-    //endregion
-
-    //region ==================== User ===================
-
-    public void saveProfileInfo(UserInfoDto userInfo) {
-        mDataManager.saveProfileInfo(userInfo.getName(), userInfo.getPhone(),
-                userInfo.getAvatar());
-        mUserInfoObs.onNext(userInfo);
-    }
-
-    private UserInfoDto getUserProfileInfo() {
-        Map<String, String> map = mDataManager.getUserProfileInfo();
-        return new UserInfoDto(
-                map.get(PROFILE_FULL_NAME_KEY),
-                map.get(PROFILE_PHONE_KEY),
-                map.get(PROFILE_AVATAR_KEY));
-    }
-
-    public Observable<UserInfoDto> getUserInfoObs() {
-        return mUserInfoObs;
     }
 
     //endregion

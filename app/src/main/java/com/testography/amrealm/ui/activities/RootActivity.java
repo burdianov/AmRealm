@@ -351,6 +351,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
             TabLayout tabView = new TabLayout(this); // создаем TabLayout
             tabView.setupWithViewPager(pager); // связываем его с ViewPager
             tabView.setTabGravity(TabLayout.GRAVITY_FILL);
+            tabView.setForegroundGravity(TabLayout.GRAVITY_FILL);
             mAppBar.addView(tabView); // добавляем табы в AppBar
             pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener
                     (tabView)); // регистрируем обработчик переключения по табам для ViewPager

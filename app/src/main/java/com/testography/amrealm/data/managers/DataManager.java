@@ -212,7 +212,7 @@ public class DataManager {
         return mUserSettings;
     }
 
-    public void saveProfileInfo(String name, String phone, String avatar) {
+    public void saveUserProfileInfo(String name, String phone, String avatar) {
         mUserProfileInfo.put(PROFILE_FULL_NAME_KEY, name);
         mUserProfileInfo.put(PROFILE_AVATAR_KEY, avatar);
         mUserProfileInfo.put(PROFILE_PHONE_KEY, phone);

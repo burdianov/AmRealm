@@ -68,11 +68,11 @@ public class RootPresenter extends Presenter<IRootView> {
     }
 
     @Override
-    public void dropView(IRootView view) {
+    protected void onExitScope() {
         if (mUserInfoSub != null) {
             mUserInfoSub.unsubscribe();
         }
-        super.dropView(view);
+        super.onExitScope();
     }
 
     private Subscription subscribeOnUserInfoObs() {

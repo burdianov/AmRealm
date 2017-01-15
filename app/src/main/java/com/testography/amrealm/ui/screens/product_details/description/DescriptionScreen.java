@@ -48,7 +48,6 @@ public class DescriptionScreen extends AbstractScreen<DetailScreen.Component> {
     @DaggerScope(DescriptionScreen.class)
     public interface Component {
         void inject(DescriptionPresenter presenter);
-
         void inject(DescriptionView view);
     }
 
@@ -69,10 +68,7 @@ public class DescriptionScreen extends AbstractScreen<DetailScreen.Component> {
 
         @Override
         protected void initFab() {
-            /*mRootPresenter.newFabBuilder()
-                    .setVisible(View.VISIBLE)
-                    .setIcon(R.drawable.ic_favorite_white_24dp)
-                    .build();*/
+            // empty
         }
 
         @Override

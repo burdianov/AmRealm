@@ -47,8 +47,7 @@ public class DescriptionView extends AbstractView<DescriptionScreen.DescriptionP
             mProductPriceTxt.setText(String.valueOf(descriptionDto.getCount() *
                     descriptionDto.getPrice() + ".-"));
         } else {
-            mProductPriceTxt.setText(String.valueOf(descriptionDto.getPrice() +
-                    ".-"));
+            mProductPriceTxt.setText(String.valueOf(descriptionDto.getPrice() + ".-"));
         }
     }
 
@@ -65,6 +64,4 @@ public class DescriptionView extends AbstractView<DescriptionScreen.DescriptionP
     }
 
     //endregion
-
-
 }
